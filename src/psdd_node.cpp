@@ -604,7 +604,7 @@ void WritePsddToFile(PsddNode *root_node, const char *output_filename) {
           "T " + std::to_string(node_index) + " " +
           std::to_string(sdd_vtree_position(cur_top_node->vtree_node())) + " " +
           std::to_string(cur_top_node->variable_index()) + " " +
-          std::to_string(cur_top_node->false_parameter().parameter()) + " " +
+          // std::to_string(cur_top_node->false_parameter().parameter()) + " " +
           std::to_string(cur_top_node->true_parameter().parameter()) + "\n";
     } else {
       assert(cur->node_type() == DECISION_NODE_TYPE);

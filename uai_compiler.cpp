@@ -3,6 +3,7 @@
 //
 
 #include <stdio.h>
+#include <fstream>
 
 #include <algorithm>
 #include <cstring>
@@ -66,8 +67,10 @@ int main(int argc, const char* argv[]) {
   // output filename
   char psdd_fname[1000];
   char vtree_fname[1000];
+  char partition_fname[1000];
   sprintf(psdd_fname, "%s.psdd", uai_fname);
   sprintf(vtree_fname, "%s.vtree", uai_fname);
+  sprintf(partition_fname, "%s.partition", uai_fname);
 
   psdd_node_util::WritePsddToFile(result.first, psdd_fname);
   sdd_vtree_save(vtree_fname, pc.psdd_manager()->vtree());
@@ -75,4 +78,10 @@ int main(int argc, const char* argv[]) {
             << psdd_node_util::SerializePsddNodes(result.first).size()
             << std::endl;
   std::cout << "Log Partition " << result.second.parameter() << std::endl;
+
+  // output partition
+  std::ofstream output_file;
+  output_file.open(partition_fname);
+  output_file << result.second.parameter() << std::endl;
+  output_file.close();
 }
