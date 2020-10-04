@@ -1,10 +1,8 @@
-# cmake_minimum_required(VERSION 3.14)
+cmake_minimum_required(VERSION 3.9)
 project(psdd)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_C_STANDARD 99)
-set(CMAKE_CXX_FLAGS "-no-pie")
-
 include_directories(include)
 include_directories(/usr/local/include)
 link_directories(/usr/local/lib)
@@ -19,6 +17,8 @@ if(UNIX AND NOT APPLE)
   link_directories(lib/linux)
   set(htd "libhtd.so")
   set(kahypar "libkahypar.so")
+  set(CMAKE_CXX_FLAGS "-no-pie")
+  # set(CMAKE_POSITION_INDEPENDENT_CODE FALSE)
 endif(UNIX AND NOT APPLE)  
 
 set(gtest_main "libgtest_main.a")
